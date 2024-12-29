@@ -1,0 +1,37 @@
+{
+    "root": true,
+    "ignorePatterns": ["projects/**/*"],
+    "plugins": ["import"],
+    "settings": {
+    "import/resolver": {
+      "typescript": {
+        "project": "./tsconfig.json"
+      }}},
+    "overrides": [
+      {
+        "files": ["*.ts"],
+        "parserOptions": {
+          "project": ["tsconfig.json"]
+        },
+        "extends": [
+          "plugin:@angular-eslint/recommended", 
+          "eslint:recommended"
+        ],
+        "rules": {
+          "@typescript-eslint/no-unused-vars": "error",
+          "quotes": ["error", "single"],
+          "semi": ["error", "always"]
+        }
+      },
+      {
+        "files": ["*.html"],
+        "extends": ["plugin:@angular-eslint/template/recommended"],
+        "rules": {
+  "import/order": ["error", { "newlines-between": "always" }],
+  "prefer-arrow/prefer-arrow-functions": "warn",
+  "jsdoc/check-alignment": "warn"
+}
+      }
+    ]
+  }
+  
