@@ -1,1 +1,61 @@
-<p>login works!</p>
+<div class="flex justify-center items-center min-h-screen bg-gray-100">
+  <div class="w-2/5 bg-white rounded shadow p-6">
+    <div class="p-card w-full max-w-30rem mx-auto">
+      <h2 class="text-center text-xl font-bold mb-6">SIGN IN</h2>
+      <form class="space-y-4" (ngSubmit)="login()">
+        <!-- Email Field -->
+        <div>
+          <span class="p-float-label">
+            <label for="email">Email</label>
+            <input
+              id="email"
+              type="email"
+              pInputText
+              class="w-full"
+              [(ngModel)]="email"
+              name="email"
+              placeholder=" "
+            />
+          </span>
+        </div>
+        <!-- Password Field -->
+        <div>
+          <span class="p-float-label">
+            <label for="password">Password</label>
+            <input
+              id="password"
+              type="password"
+              pPassword
+              class="w-full"
+              [(ngModel)]="password"
+              name="password"
+              placeholder=" "
+            />
+          </span>
+        </div>
+        <!-- Remember Me and Forgot Password -->
+        <div class="flex items-center">
+          <input type="checkbox" class="mr-2" id="remember" />
+          <label for="remember" class="text-sm">Ghi nhớ đăng nhập</label>
+        </div>
+        <!-- Submit Button -->
+        <button
+          pButton
+          type="submit"
+          label="Đăng Nhập"
+          class="w-full"
+          icon="pi pi-sign-in"
+          styleClass="p-button-primary"
+        ></button>
+      </form>
+      <!-- Register Link -->
+      <div class="text-center mt-4">
+        <p class="text-sm">
+          Bạn chưa có tài khoản?
+          <a class="text-primary cursor-pointer">Đăng ký</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<p-toast></p-toast>
