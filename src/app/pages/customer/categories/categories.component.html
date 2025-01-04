@@ -1,0 +1,13 @@
+<p>categories works!</p>
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Slug</th>
+        <th>Images</th>
+    </tr>
+    <tr *ngFor="let category of categories">
+        <td>{{category.name}}</td>
+        <td>{{category.slug}}</td>
+        <td><img alt="" class="cursor-pointer hover:scale-105 duration-300 transition-all" width="150" src="{{category.imageUrl}}"/></td>
+    </tr>
+  </table>

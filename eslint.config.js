@@ -5,7 +5,7 @@ const angular = require("angular-eslint");
 
 module.exports = tseslint.config(
   {
-    files: ["**/*.ts"],
+    files: ["**/*.ts", "**/*.html"],
     extends: [
       eslint.configs.recommended,
       ...tseslint.configs.recommended,
@@ -22,6 +22,9 @@ module.exports = tseslint.config(
           style: "camelCase",
         },
       ],
+      "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/no-inferrable-types": "off",
+      "no-debugger": "off",
       "@angular-eslint/component-selector": [
         "error",
         {

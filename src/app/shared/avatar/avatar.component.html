@@ -1,0 +1,34 @@
+<button 
+  type="button" 
+  class="p-button-text p-button-rounded p-button-plain"
+  (click)="menu.toggle($event)">
+  <img
+    class="w-10 h-10 rounded-full border border-black"
+    src="https://vietnampfa.com/wp-content/uploads/2024/10/avatar-mac-dinh-38QxpPrU.jpg"
+    alt="Profile Image"
+  />
+</button>
+
+<p-overlayPanel #menu class="p-shadow-5 rounded-lg border border-gray-200">
+  <a
+    routerLink="/login"
+    routerLinkActive="active"
+    ariaCurrentWhenActive="page"
+    class="p-menuitem-link flex items-center space-x-2 hover:bg-gray-100 p-2 rounded-lg"
+  >
+    <i class="pi pi-user text-blue-500"></i>
+    <span>Login</span>
+  </a>
+
+  <p class="text-xs text-black font-thin mt-2">
+    If you don't have an account!
+    <a
+      class="font-bold underline text-primary"
+      routerLink="/register"
+      routerLinkActive="active"
+      ariaCurrentWhenActive="page"
+    >
+      Sign up
+    </a>
+  </p>
+</p-overlayPanel>

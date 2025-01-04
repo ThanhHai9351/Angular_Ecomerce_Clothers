@@ -9,7 +9,7 @@
       }}},
     "overrides": [
       {
-        "files": ["*.ts"],
+        "files": ["*.ts",".html"],
         "parserOptions": {
           "project": ["tsconfig.json"]
         },
@@ -20,7 +20,13 @@
         "rules": {
           "@typescript-eslint/no-unused-vars": "error",
           "quotes": ["error", "single"],
-          "semi": ["error", "always"]
+          "semi": ["error", "always"],
+          "@angular-eslint/template/elements-content": [
+        "error",
+        {
+          "allowEmptyWithAriaLabel": true
+        }
+      ]
         }
       },
       {
