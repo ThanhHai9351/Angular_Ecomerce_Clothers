@@ -4,6 +4,7 @@ import { CategoryService } from '@app/core/services/category.service';
 import { APIResponse, ICategory } from '@app/core/model/model';
 import { CommonModule } from '@angular/common';
 import { AvatarComponent } from '@app/shared/avatar/avatar.component';
+import { AccountService } from '@app/core/services/account.service';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,7 @@ import { AvatarComponent } from '@app/shared/avatar/avatar.component';
 })
 export class AppComponent implements OnInit {
   categories: ICategory[] = []
-  constructor(private categoryService: CategoryService) {}
+  constructor(private categoryService: CategoryService, private accountService: AccountService) {}
 
   ngOnInit(): void {
     this.getAllCategories();

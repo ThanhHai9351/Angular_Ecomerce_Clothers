@@ -1,7 +1,8 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { IAccount } from '@app/core/model/model';
-import { AccountService } from '@app/core/services/account.service';
+import { AuthService } from '@app/core/services/auth.service';
 import { MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
@@ -9,21 +10,23 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 @Component({
   selector: 'app-avatar',
   standalone: true,
-  imports: [ButtonModule, OverlayPanelModule, RouterLink, RouterLinkActive],
+  imports: [ButtonModule, OverlayPanelModule, RouterLink, RouterLinkActive, CommonModule],
   templateUrl: './avatar.component.html',
   styleUrls: ['./avatar.component.scss'], 
   providers: [MessageService],
 })
 export class AvatarComponent implements OnInit {
-  user: IAccount = {} as IAccount;
+  user: IAccount | null = null;
 
-  constructor(
-    private accountService: AccountService,
+  constructor(  
+    private authService: AuthService,
     private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
-    this.getMe();
+    this.authService.user$.subscribe((user) => {
+      this.user = user;
+    });
   }
 
   showError(message: string): void {
@@ -34,28 +37,8 @@ export class AvatarComponent implements OnInit {
     });
   }
 
-  getMe(): void {
-    if (typeof localStorage === 'undefined') {
-      this.showError('localStorage is not available.');
-      return;
-    }
-
-    const token = localStorage.getItem('accessToken');
-    if (!token) {
-      this.showError('Access token is missing.');
-      return;
-    }
-
-    this.accountService.getMe(token).subscribe({
-      next: (response) => {
-        if (response.status === 200) {
-          this.user = response.data as IAccount;
-        }
-      },
-      error: (err) => {
-        const errorMessage = err?.error?.message || 'Network error occurred.';
-        this.showError(errorMessage);
-      },
-    });
+  logout():void {
+    localStorage.removeItem('accessToken');
+    this.user = null;
   }
 }
