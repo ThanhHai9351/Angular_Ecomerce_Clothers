@@ -8,7 +8,9 @@ import { PasswordModule } from 'primeng/password';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
-import { Router } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { AuthService } from '@app/core/services/auth.service';
+import { IAccount } from '@app/core/model/model';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +22,9 @@ import { Router } from '@angular/router';
     PasswordModule,
     CheckboxModule,
     ButtonModule,
-    CardModule
+    CardModule,
+    RouterLink,
+    RouterLinkActive
   ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
@@ -29,10 +33,12 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   email: string = '';
   password: string = '';
+  user: IAccount | null = null;
 
   constructor(
     private accountService: AccountService,
     private messageService: MessageService,
+    private authService: AuthService,
     private router: Router
   ) {}
 
@@ -54,7 +60,7 @@ export class LoginComponent {
 
   login() {
     if (!this.email || !this.password) {
-      this.showError('Email và Password không được để trống');
+      this.showError('Email and password not empty!');
       return;
     }
 
@@ -63,17 +69,32 @@ export class LoginComponent {
         if (response.status === 200) {
           localStorage.setItem('accessToken', response.accessToken);
           localStorage.setItem('refreshToken', response.refreshToken);
-          this.showSuccess('Login thành công!');
+          this.getMe(response.accessToken);
+          this.showSuccess('Login successfully!');
           setTimeout(()=>{
             this.router.navigate(['/']);
           },1500)
         } else {
-          this.showError('Sai tài khoản hoặc mật khẩu!');
+          this.showError('Login fail! Please to check information again!');
         }
       },
       error: () => {
-        this.showError('Mạng lỗi');
+        this.showError('Network error!');
       }
     });
   }
+
+   getMe(accessToken: string): void {
+      this.accountService.getMe(accessToken).subscribe({
+        next: (response) => {
+          if (response.status === 200) {
+            this.authService.setUser(response.data as IAccount)
+          }
+        },
+        error: (err) => {
+          const errorMessage = err?.error?.message || 'Network error occurred.';
+          this.showError(errorMessage);
+        },
+      });
+    }
 }

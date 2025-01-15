@@ -1,1 +1,100 @@
-<p>register works!</p>
+<div class="flex justify-center items-center min-h-screen bg-gray-100">
+  <div class="w-2/5 bg-white rounded shadow p-6">
+    <div class="p-card w-full max-w-30rem mx-auto">
+      <h2 class="text-center text-xl font-bold mb-6">SIGN UP</h2>
+      <form class="space-y-4" (ngSubmit)="register()">
+        <div>
+          <span class="p-float-label">
+            <label for="firstName">First Name</label>
+            <input
+              id="firstName"
+              type="text"
+              pInputText
+              class="w-full"
+              [(ngModel)]="firstName"
+              name="firstName"
+              placeholder="Enter the first name..."
+            />
+          </span>
+        </div>
+        <div>
+          <span class="p-float-label">
+            <label for="lastName">Last Name</label>
+            <input
+              id="lastName"
+              type="text"
+              pInputText
+              class="w-full"
+              [(ngModel)]="lastName"
+              name="lastName"
+              placeholder="Enter the last name..."
+            />
+          </span>
+        </div>
+        <div>
+          <span class="p-float-label">
+            <label for="email">Email</label>
+            <input
+              id="email"
+              type="email"
+              pInputText
+              class="w-full"
+              [(ngModel)]="email"
+              name="email"
+              placeholder="example@gmail.com"
+            />
+          </span>
+        </div>
+        <div>
+          <span class="p-float-label">
+            <label for="password">Password</label>
+            <input
+              id="password"
+              type="password"
+              pPassword
+              class="w-full"
+              [(ngModel)]="password"
+              name="password"
+              placeholder="******"
+            />
+          </span>
+        </div>
+        <div>
+          <span class="p-float-label">
+            <label for="repassword">RePassword</label>
+            <input
+              id="repassword"
+              type="password"
+              pPassword
+              class="w-full"
+              [(ngModel)]="repassword"
+              name="repassword"
+              placeholder="******"
+            />
+          </span>
+        </div>
+        <button
+          pButton
+          type="submit"
+          label="Submit"
+          class="w-full"
+          icon="pi pi-sign-in"
+          styleClass="p-button-primary"
+        ></button>
+      </form>
+      <!-- Register Link -->
+      <div class="text-center mt-4">
+        <p class="text-sm">
+          If you have account.
+          <a
+            routerLink="/login"
+            routerLinkActive="active"
+            class="text-primary cursor-pointer font-bold underline"
+            >Sign In!</a
+          >
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<p-toast></p-toast>

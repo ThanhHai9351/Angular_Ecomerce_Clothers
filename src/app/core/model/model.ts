@@ -10,6 +10,7 @@ export interface IAccount{
     lastName: string
     email: string
     password: string
+    avatarUrl: string
     role: string
 }
 
@@ -23,6 +24,14 @@ export interface ICategory{
 export interface DTOLogin {
     email: string
     password: string
+}
+
+export interface DTORegister {
+    email: string
+    password: string
+    firstName: string
+    lastName: string
+    role: string
 }
 
 export interface APILoginResponse{

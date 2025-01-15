@@ -36,13 +36,13 @@
         <!-- Remember Me and Forgot Password -->
         <div class="flex items-center">
           <input type="checkbox" class="mr-2" id="remember" />
-          <label for="remember" class="text-sm">Ghi nhớ đăng nhập</label>
+          <label for="remember" class="text-sm">Remember password!</label>
         </div>
         <!-- Submit Button -->
         <button
           pButton
           type="submit"
-          label="Đăng Nhập"
+          label="Submit"
           class="w-full"
           icon="pi pi-sign-in"
           styleClass="p-button-primary"
@@ -51,8 +51,10 @@
       <!-- Register Link -->
       <div class="text-center mt-4">
         <p class="text-sm">
-          Bạn chưa có tài khoản?
-          <a class="text-primary cursor-pointer">Đăng ký</a>
+          Don't have account!
+          <a  routerLink="/register"
+          routerLinkActive="active"
+           class="text-primary cursor-pointer font-bold underline">Sign Up</a>
         </p>
       </div>
     </div>
